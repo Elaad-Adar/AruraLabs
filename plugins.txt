@@ -12,7 +12,6 @@ email-ext:latest
 git:latest
 github-api:latest
 github-branch-source:latest
-github-branch-source:latest
 gradle:latest
 job-dsl:latest
 ldap:latest
