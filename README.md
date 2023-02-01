@@ -1,11 +1,11 @@
 # AruraLabs Home Assignment
 
 
-[how to run](#how to run)  
-[Introduction](#Introduction) 
+[Instructions](#Instructions)  
+[Background](#Background) 
 
 
-## how to run
+## Instructions
 ### Parameters
 this image comes with a pre-built user as admin, please set the username (`JENKINS_ADMIN_ID`) and password (`JENKINS_ADMIN_PASSWORD`) in the `.env` file
 (default is `admin` and `admin`).  
@@ -25,7 +25,7 @@ once done please clone this repository locally and cd to containing directory.
 you can run the following command to start the jenkins server:
 `docker-compose --env-file .env up -d --build `
 
-## Introduction
+## Background
 I used JCasC (jenkins configuration as code) to configure the jenkins server.
 disabled the setup wizard and added a pre-built user with admin privileges.
 need plugins are in the `plugins.txt` file you can add more if needed (installed when image built).
