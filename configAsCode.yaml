@@ -1,0 +1,44 @@
+jenkins:
+  numExecutors: 1
+  securityRealm:
+    local:
+      allowsSignup: false
+      users:
+       - id: ${JENKINS_ADMIN_ID}
+         password: ${JENKINS_ADMIN_PASSWORD}
+  authorizationStrategy:
+    globalMatrix:
+      permissions:
+        - "Overall/Administer:admin"
+        - "Overall/Read:authenticated"
+  remotingSecurity:
+    enabled: true
+security:
+  queueItemAuthenticator:
+    authenticators:
+    - global:
+        strategy: triggeringUsersAuthorizationStrategy
+unclassified:
+  location:
+    url: "${JENKINS_HOST}"
+jobs:
+  - script: >
+      freeStyleJob("MyJob") {
+          displayName('my job')
+          description("This job waits for a github webhook and on merge triggers the ")
+          scm {
+            git {
+              remote {
+                url("${GITHUB_REPO_JOB_DSL}")
+              }
+              branch("main")
+            }
+          }
+          triggers {
+            githubPush()
+          }
+          steps {
+              shell("git clone ${GITHUB_REPO_JOB_DSL} repo")
+              shell("python3 ./repo/main.py")
+          }
+        }
