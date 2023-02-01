@@ -37,3 +37,6 @@ I've used the Matrix Authorization Strategy plugin to define the permissions for
 I'm granting the `Overall/Administer` permissions to the admin user. You’re also granting `Overall/Read` permissions to authenticated, which is a special role that represents all authenticated users.  
 To prevent privilege escalation simply by defining and running a malicious job or pipeline I used authorize-project plugin to define the permissions for the job as `strategy: triggeringUsersAuthorizationStrategy`.
 To enable Agent to Controller Access Control I used the `remotingSecurity:enabled: true`.  
+in the Dockerfile it is based on multi-stage build with base of python (to run the python script on built in node)  
+
+all tested locally on my machine. if there are any issues please let me know.
