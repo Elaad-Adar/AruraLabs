@@ -23,13 +23,13 @@ unclassified:
     url: "${JENKINS_HOST}"
 jobs:
   - script: >
-      freeStyleJob("MyJob") {
-          displayName('my job')
+      freeStyleJob("Github Listener") {
+          displayName('Github Listener')
           description("This job waits for a github webhook and on merge triggers the ")
           scm {
             git {
               remote {
-                url("${GITHUB_REPO_JOB_DSL}")
+                url("${GITHUB_REPO_DEST}")
               }
               branch("main")
             }
