@@ -19,17 +19,17 @@ ENV JAVA_OPTS -Djenkins.install.runSetupWizard=false
 ENV CASC_JENKINS_CONFIG /var/jenkins_home/casc.yaml
 ENV JENKINS_HOME /var/jenkins_home
 
-# # install docker-cli and its dependencies
-# RUN apt update && apt install -y lsb-release \
-#     software-properties-common \
-#     apt-transport-https \
-#     && rm -rf /var/lib/apt/lists/*
+# install docker-cli and its dependencies
+RUN apt update && apt install -y lsb-release \
+    software-properties-common \
+    apt-transport-https \
+    && rm -rf /var/lib/apt/lists/*
 
-# RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
-#     && add-apt-repository "deb [arch=amd64] \
-#     https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
-#     && apt update && apt install -y docker-ce-cli \
-#     && rm -rf /var/lib/apt/lists/*
+RUN curl -fsSL https://download.docker.com/linux/debian/gpg | apt-key add - \
+    && add-apt-repository "deb [arch=amd64] \
+    https://download.docker.com/linux/debian $(lsb_release -cs) stable" \
+    && apt update && apt install -y docker-ce-cli \
+    && rm -rf /var/lib/apt/lists/*
 
 COPY plugins.txt /usr/share/jenkins/ref/plugins.txt
 RUN jenkins-plugin-cli --clean-download-directory --list --view-security-warnings -f /usr/share/jenkins/ref/plugins.txt
