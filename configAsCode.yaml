@@ -41,4 +41,7 @@ jobs:
               shell("git clone ${GITHUB_REPO_JOB_DSL} repo")
               shell("python3 ./repo/main.py")
           }
+          publishers {
+              wsCleanup()
+          }
         }
